@@ -9,8 +9,8 @@ using System.Text;
 namespace WcfService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract]
-    public interface IService1
+    [ServiceContract( Namespace = "http://Microsoft.ServiceModel.Samples" , SessionMode = SessionMode.Required, CallbackContract = typeof(IPumpServiceCallback))]
+    public interface IPumpService
     {
 
         [OperationContract]
@@ -20,6 +20,12 @@ namespace WcfService
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: Add your service operations here
+
+        [OperationContract]
+        void RunScript();
+
+        [OperationContract]
+        void UpdateAndCompileScript(string script);
     }
 
 
